@@ -8692,10 +8692,6 @@ li.control .same-as-billing label {
   margin-bottom: 0;
 }
 
-.firecheckout-set .form-list ul li.wide.country_id {
-  display: none;
-}
-
 .firecheckout-set .form-list #billing-new-address-form li.city {
   clear: left;
 }
@@ -8704,7 +8700,7 @@ li.control .same-as-billing label {
   margin: 0;
 }
 
-.firecheckout-set .form-list .customer-name-middlename .name-middlename {
+.checkout__customer-shipping ,.firecheckout-set .form-list .customer-name-middlename .name-middlename {
   display: none;
 }
 
@@ -8852,9 +8848,6 @@ a.cvv-what-is-this {
   width: 50%;
 }
 
-.checkout__customer-shipping {
-  display: none;
-}
 
 .checkout__customer-shipping label {
   font-size: 15px;

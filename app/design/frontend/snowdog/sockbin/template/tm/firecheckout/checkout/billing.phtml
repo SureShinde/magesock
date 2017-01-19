@@ -185,6 +185,9 @@ if (method_exists($addressHelper, 'isVatAttributeVisible')) {
                                         <div class="input-box">
                                             
                                             <?php if ('country_id' === $field) : ?>
+                                                <label for="<?php echo $_prefix ?>:<?php echo $field ?>" class="<?php echo $required ? 'required' : '' ?>"><?php if ($required): ?>
+                                                    <em>*</em><?php endif; ?><?php echo $this->__($fields[$field]['label']) ?>
+                                                </label>
                                                 <div class="country_id_select">
                                                     <?php echo $this->getCountryHtmlSelect($_prefix) ?>
                                                 </div>
