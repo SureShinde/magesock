@@ -295,11 +295,47 @@ if (isset($tierPrices[0])) {
                             jQuery('#product-price-<?php echo $_product->getId() ?> .price').html('$' + String(totalProductPrice));
                             jQuery('.pair-price .price').html('$' + String(tierPriceEach));
                         };
+
+                        
+                        <?php if($_product->getTypeId() == "configurable"): ?>
+                        
+                        jQuery( "#attribute150" ).change(function() {
+                            var attributes = [];
+                            
+                            <?php   $childProducts = Mage::getModel('catalog/product_type_configurable')->getUsedProducts(null,$_product);
+                                    foreach($childProducts as $child) { 
+                                        $_p = Mage::getSingleton('catalog/product')->load($child->getId()); ?>
+                                    
+                                    attributes[<?php echo $_p->getData('color2'); ?>] = '<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl( $_p->getImage() );  ?>';
+                                    
+                                    <?php } ?>
+                             
+
+                            if(jQuery(this).val() && attributes[jQuery(this).val()] != "undefined") {
+                                console.log(jQuery(this).val());
+                                console.log(attributes[jQuery(this).val()]);
+                                jQuery('#image-main').attr('src',"");
+                                jQuery('#image-main').attr('src', attributes[jQuery(this).val()] );
+                                jQuery('.open-lightbox').attr('href', attributes[jQuery(this).val()] );
+                                jQuery('.open-lightbox hidden').attr('src', attributes[jQuery(this).val()] );
+
+                            } else {
+                                
+                                jQuery('#image-main').attr('src',"");
+                                jQuery('#image-main').attr('src','<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl( $_product->getImage() );  ?>');
+                                jQuery('.open-lightbox').attr('href','<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl( $_product->getImage() );  ?>');
+                                jQuery('.open-lightbox hidden').attr('src','<?php echo Mage::getModel('catalog/product_media_config')->getMediaUrl( $_product->getImage() );  ?>');
+
+                            }
+                        });
+
+                        <?php endif; ?>
+
                     </script>
                 <?php endif; ?>
             </div>
 
-            <?php echo $this->getChildHtml('product_additional_data') ?>
+            <?php echo $this->getChildHtml('product_additional_data') ?> 
 
         </div>
     </div>
