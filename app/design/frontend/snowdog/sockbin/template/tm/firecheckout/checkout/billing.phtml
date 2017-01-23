@@ -316,8 +316,12 @@ if (method_exists($addressHelper, 'isVatAttributeVisible')) {
         
         if (jQuery("select[title='Country']").val() == "CA") {
             jQuery("label[for='billing:postcode']").text('Postal Code');
+            jQuery("label[for='billing:region']").text('Province');
+            jQuery("select[title='State']").find("option[value='']").text('Please select Province');
         } else {
             jQuery("label[for='billing:postcode']").text('Zip Code');
+            jQuery("label[for='billing:region']").text('State');
+            jQuery("select[title='State']").find("option[value='']").text('Please select region, state or province');
         }
 
     });
@@ -325,9 +329,17 @@ if (method_exists($addressHelper, 'isVatAttributeVisible')) {
 
     jQuery("select[title='Country']").change(function () {
         if (jQuery(this).val() == "CA") {
+            
             jQuery("label[for='billing:postcode']").text('Postal Code');
+            jQuery("label[for='billing:region']").text('Province');
+            jQuery("select[title='State']").find("option[value='']").text('Please select Province');
+
         } else {
+            
             jQuery("label[for='billing:postcode']").text('Zip Code');
+            jQuery("label[for='billing:region']").text('State');
+            jQuery("select[title='State']").find("option[value='']").text('Please select region, state or province');
+            
         }
     });
     
