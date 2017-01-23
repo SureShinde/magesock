@@ -313,5 +313,24 @@ if (method_exists($addressHelper, 'isVatAttributeVisible')) {
                 billingRegionUpdater.update();
             }
         });
+        
+        if (jQuery("select[title='Country']").val() == "CA") {
+            jQuery("label[for='billing:postcode']").text('Postal Code');
+        } else {
+            jQuery("label[for='billing:postcode']").text('Zip Code');
+        }
+
     });
+
+
+    jQuery("select[title='Country']").change(function () {
+        if (jQuery(this).val() == "CA") {
+            jQuery("label[for='billing:postcode']").text('Postal Code');
+        } else {
+            jQuery("label[for='billing:postcode']").text('Zip Code');
+        }
+    });
+    
+
+
 </script>
